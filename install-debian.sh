@@ -87,6 +87,7 @@ setup_openssh() {
     -e 's/^#?AuthorizedKeysFile.*/AuthorizedKeysFile \/etc\/ssh\/authorized_keys/' \
     -e 's/^#?PasswordAuthentication.*/PasswordAuthentication no/' \
     -e 's/^#?ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' \
+    -e 's/^#?X11Forwarding.*/X11Forwarding no/' \
       /etc/ssh/sshd_config
   sudo systemctl restart sshd
 }
