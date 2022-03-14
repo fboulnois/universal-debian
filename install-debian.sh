@@ -82,8 +82,11 @@ setup_utils() {
 setup_openssh() {
   echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/authorized_keys
   sudo sed -i -r \
+    -e 's/^#?LogLevel.*/LogLevel VERBOSE/' \
+    -e 's/^#?PermitRootLogin.*/PermitRootLogin no/' \
     -e 's/^#?AuthorizedKeysFile.*/AuthorizedKeysFile \/etc\/ssh\/authorized_keys/' \
     -e 's/^#?PasswordAuthentication.*/PasswordAuthentication no/' \
+    -e 's/^#?ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' \
       /etc/ssh/sshd_config
   sudo systemctl restart sshd
 }
