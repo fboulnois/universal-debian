@@ -30,7 +30,7 @@ setup_nvm() {
   curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
   # shellcheck source=/dev/null
   source "$HOME/.nvm/nvm.sh"
-  nvm install 16
+  nvm install --lts
   npm install -g yarn
   echo "enableTelemetry: 0" > "$HOME/.yarnrc.yml"
   yarn set version stable && rm package.json
