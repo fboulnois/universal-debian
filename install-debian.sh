@@ -34,8 +34,11 @@ setup_nvm() {
   # shellcheck source=/dev/null
   source "$HOME/.nvm/nvm.sh"
   nvm install --lts
+}
+
+setup_pnpm() {
   corepack enable
-  corepack prepare pnpm@7.0.0-rc.2 --activate
+  corepack prepare pnpm@7.0.0-rc.3 --activate
   pnpm setup
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
@@ -45,6 +48,7 @@ setup_dev() {
   install_dev
   setup_rust
   setup_nvm
+  setup_pnpm
 }
 
 ##
