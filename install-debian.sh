@@ -27,14 +27,18 @@ setup_rust() {
 
 setup_nvm() {
   cd "$HOME"
-  curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  NVM_SHA256="fabc489b39a5e9c999c7cab4d281cdbbcbad10ec2f8b9a7f7144ad701b6bfdc7"
+  curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+  echo "${NVM_SHA256}  install.sh" | sha256sum -c -
+  bash < install.sh && rm install.sh
   # shellcheck source=/dev/null
   source "$HOME/.nvm/nvm.sh"
   nvm install --lts
-  npm install -g yarn
-  echo "enableTelemetry: 0" > "$HOME/.yarnrc.yml"
-  yarn set version stable && rm package.json
-  sed -i '/^$/d' .yarnrc.yml
+  corepack enable
+  corepack prepare pnpm@7.0.0-rc.2 --activate
+  pnpm setup
+  # shellcheck source=/dev/null
+  source "$HOME/.bashrc"
 }
 
 setup_dev() {
