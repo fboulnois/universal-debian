@@ -38,7 +38,7 @@ setup_nvm() {
 
 setup_pnpm() {
   corepack enable
-  corepack prepare pnpm@7.0.0-rc.8 --activate
+  corepack prepare pnpm@7.0.0 --activate
   pnpm setup
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
