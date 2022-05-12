@@ -40,6 +40,7 @@ setup_pnpm() {
   corepack enable
   corepack prepare pnpm@7.0.0 --activate
   pnpm setup
+  echo 'alias yarn="pnpm"' >> "$HOME/.bashrc"
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
 }
