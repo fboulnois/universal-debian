@@ -34,7 +34,7 @@ setup_nvm() {
   NVM_SHA256="fabc489b39a5e9c999c7cab4d281cdbbcbad10ec2f8b9a7f7144ad701b6bfdc7"
   curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
   echo "${NVM_SHA256}  install.sh" | sha256sum -c -
-  bash < install.sh && rm install.sh
+  chmod +x install.sh && ./install.sh && rm install.sh
   # shellcheck source=/dev/null
   source "$HOME/.nvm/nvm.sh"
   nvm install --lts
