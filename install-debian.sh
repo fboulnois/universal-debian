@@ -41,8 +41,9 @@ setup_nvm() {
 }
 
 setup_pnpm() {
+  PNPM_VERSION=$(git ls-remote --tags --sort="v:refname" https://github.com/pnpm/pnpm.git | awk -F '/' 'END{print substr($NF,2)}')
   corepack enable
-  corepack prepare pnpm@7.0.0 --activate
+  corepack prepare "pnpm@${PNPM_VERSION}" --activate
   pnpm setup
   echo 'alias yarn="pnpm"' >> "$HOME/.bashrc"
   # shellcheck source=/dev/null
