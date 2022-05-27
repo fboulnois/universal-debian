@@ -19,7 +19,11 @@ install_dev() {
 }
 
 setup_rust() {
-  curl https://sh.rustup.rs | sh -s -- -y
+  cd "$HOME"
+  RUST_SHA256="a3cb081f88a6789d104518b30d4aa410009cd08c3822a1226991d6cf0442a0f8"
+  curl https://sh.rustup.rs > rustup-init.sh
+  echo "${RUST_SHA256}  rustup-init.sh" | sha256sum -c -
+  chmod +x rustup-init.sh && ./rustup-init.sh -y && rm rustup-init.sh
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
   cargo install cargo-deny
