@@ -16,6 +16,7 @@ do_upgrade() {
 
 install_dev() {
   sudo apt-get install -y build-essential git gdb curl jq pkg-config libssl-dev
+  git config --global pull.rebase true
 }
 
 setup_rust() {
