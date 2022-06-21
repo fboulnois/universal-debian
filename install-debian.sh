@@ -112,13 +112,25 @@ setup_ufw() {
   sudo ufw allow ssh
 }
 
+install_docker() {
+  cd "$HOME"
+  DOCKER_SHA256="a09e26b72228e330d55bf134b8eaca57365ef44bf70b8e27c5f55ea87a8b05e2"
+  DOCKER_GPGFILE="docker-archive-bullseye-keyring.gpg"
+  DOCKER_KEYRING="/usr/share/keyrings/${DOCKER_GPGFILE}"
+  curl -s https://download.docker.com/linux/debian/gpg | gpg --batch --yes --dearmor -o "${DOCKER_GPGFILE}"
+  echo "${DOCKER_SHA256}  ${DOCKER_GPGFILE}" | sha256sum -c -
+  DOCKER_SIG=$(gpg --show-keys "${DOCKER_GPGFILE}" | awk 'NR==2 { print $1 }')
+  [ "${DOCKER_SIG}" = "9DC858229FC7DD38854AE2D88D81803C0EBFCD88" ]
+  chmod 644 "${DOCKER_GPGFILE}" && sudo mv "${DOCKER_GPGFILE}" "${DOCKER_KEYRING}"
+  echo "deb [arch=amd64 signed-by=${DOCKER_KEYRING}] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list
+  sudo apt-get update && sudo apt-get install -y docker-ce
+}
+
 setup_docker() {
   # disable unprivileged user namespaces
   sudo sysctl -w kernel.unprivileged_userns_clone=0
   # install docker and enable buildkit
-  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-  echo "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list
-  sudo apt-get update && sudo apt-get install -y docker-ce
+  install_docker
   echo '{ "features": { "buildkit": true } }' | sudo tee /etc/docker/daemon.json
   sudo systemctl restart docker
   # make docker less painful to use without disabling sudo
