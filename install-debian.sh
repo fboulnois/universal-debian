@@ -75,7 +75,14 @@ setup_ln() {
 
 config_wsl() {
   sudo apt-get install -y wget
-  sudo cp wsl.conf /etc/wsl.conf
+  WSL_CONFIG=$(cat << EOF
+[automount]
+enabled = true
+options = "metadata"
+mountFsTab = false
+EOF
+)
+  echo "${WSL_CONFIG}" | sudo tee /etc/wsl.conf
   wsl.exe --set-default "${WSL_DISTRO_NAME}"
 }
 
