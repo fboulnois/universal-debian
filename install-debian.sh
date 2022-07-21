@@ -127,7 +127,7 @@ install_docker() {
   DOCKER_KEYRING="/usr/share/keyrings/${DOCKER_GPGFILE}"
   curl -s https://download.docker.com/linux/debian/gpg | gpg --batch --yes --dearmor -o "${DOCKER_GPGFILE}"
   echo "${DOCKER_SHA256}  ${DOCKER_GPGFILE}" | sha256sum -c -
-  DOCKER_SIG=$(gpg --show-keys "${DOCKER_GPGFILE}" | awk 'NR==2 { print $1 }')
+  DOCKER_SIG=$(gpg --dry-run --show-keys "${DOCKER_GPGFILE}" | awk 'NR==2 { print $1 }')
   [ "${DOCKER_SIG}" = "9DC858229FC7DD38854AE2D88D81803C0EBFCD88" ]
   chmod 644 "${DOCKER_GPGFILE}" && sudo mv "${DOCKER_GPGFILE}" "${DOCKER_KEYRING}"
   echo "deb [arch=amd64 signed-by=${DOCKER_KEYRING}] https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker.list
