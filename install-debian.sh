@@ -44,7 +44,7 @@ setup_nvm() {
 }
 
 setup_pnpm() {
-  PNPM_VERSION=$(git ls-remote --tags --sort="v:refname" https://github.com/pnpm/pnpm.git | awk -F '/' 'END{print substr($NF,2)}')
+  PNPM_VERSION=$(git ls-remote --tags --sort="v:refname" https://github.com/pnpm/pnpm.git | awk -F '/' '/[0-9]$/{ VER=substr($NF, 2) }END{ print VER }')
   corepack enable
   corepack prepare "pnpm@${PNPM_VERSION}" --activate
   pnpm setup
