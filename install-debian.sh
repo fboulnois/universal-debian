@@ -16,6 +16,9 @@ do_upgrade() {
 
 install_dev() {
   sudo apt-get install -y build-essential git gdb curl jq pkg-config libssl-dev
+}
+
+setup_git() {
   git config --global init.defaultBranch main
   git config --global pull.rebase true
   git config --global credential.helper store
@@ -56,6 +59,7 @@ setup_pnpm() {
 
 setup_dev() {
   install_dev
+  setup_git
   setup_rust
   setup_nvm
   setup_pnpm
