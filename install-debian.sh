@@ -70,8 +70,7 @@ setup_dev() {
 ##
 
 setup_ln() {
-  WINHOME=$(echo "${PATH}" | sed 's/:/\n/g' | grep -m 1 WindowsApps | sed 's/\/AppData.*//')
-  WSLHOME=$(wslpath "${WINHOME}" 2>&1 | sed 's/wslpath: //')
+  WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /WindowsApps/{ sub(/\/AppData.*/,"",$0) ; print $1 }')
   WSLPROJ="${WSLHOME}/Documents/Projects"
   if [ ! -d "${WSLPROJ}" ]; then
       >&2 echo "ERROR: Path ${WSLPROJ} does not exist"
