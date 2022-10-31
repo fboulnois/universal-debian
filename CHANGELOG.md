@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.0.13](https://github.com/fboulnois/universal-debian/compare/v1.0.12...v1.0.13) - 2022-10-31
+
+### Added
+
+* Update rustup to v1.25.1
+* Update nvm to v0.39.2
+
+### Fixed
+
+* Simplify pnpm version check
+
 ## [v1.0.12](https://github.com/fboulnois/universal-debian/compare/v1.0.11...v1.0.12) - 2022-10-05
 
 ### Added
