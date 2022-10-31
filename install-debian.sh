@@ -27,8 +27,8 @@ setup_git() {
 
 setup_rust() {
   cd "$HOME"
-  RUST_SHA256="a3cb081f88a6789d104518b30d4aa410009cd08c3822a1226991d6cf0442a0f8"
-  curl https://sh.rustup.rs > rustup-init.sh
+  RUST_SHA256="173f4881e2de99ba9ad1acb59e65be01b2a44979d83b6ec648d0d22f8654cbce"
+  curl -O https://raw.githubusercontent.com/rust-lang/rustup/1.25.1/rustup-init.sh
   echo "${RUST_SHA256}  rustup-init.sh" | sha256sum -c -
   chmod +x rustup-init.sh && ./rustup-init.sh -y && rm rustup-init.sh
   # shellcheck source=/dev/null
