@@ -36,21 +36,19 @@ setup_rust() {
   cargo install cargo-deny
 }
 
-setup_nvm() {
+setup_volta() {
   cd "$HOME"
-  NVM_SHA256="c1e672cd63737cd3e166ad43dffcb630a3bea07484705eae303c4b6c3e42252a"
-  curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh
-  echo "${NVM_SHA256}  install.sh" | sha256sum -c -
-  chmod +x install.sh && ./install.sh && rm install.sh
+  VOLTA_SHA256="68325d82a8b2828e0031f724ad1e9c9505bcdf2b1ff5088db8e7cd1615828125"
+  curl -O https://raw.githubusercontent.com/volta-cli/volta/v1.1.0/dev/unix/volta-install.sh
+  echo "${VOLTA_SHA256}  volta-install.sh" | sha256sum -c -
+  chmod +x volta-install.sh && ./volta-install.sh && rm volta-install.sh
   # shellcheck source=/dev/null
-  source "$HOME/.nvm/nvm.sh"
-  nvm install --lts
+  source "$HOME/.bashrc"
+  volta install node@lts
 }
 
 setup_pnpm() {
-  corepack enable
-  corepack prepare pnpm@latest --activate
-  pnpm setup
+  volta install pnpm@latest
   printf '\n\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
@@ -60,7 +58,7 @@ setup_dev() {
   install_dev
   setup_git
   setup_rust
-  setup_nvm
+  setup_volta
   setup_pnpm
 }
 
