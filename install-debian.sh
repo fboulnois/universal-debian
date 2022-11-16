@@ -67,7 +67,7 @@ setup_dev() {
 ##
 
 setup_ln() {
-  WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /AppData/{ sub(/\/AppData.*/,"",$0) } END { print $0 }')
+  WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /AppData/{ sub(/\/AppData.*/,"",$0) } END { print }')
   WSLPROJ="${WSLHOME}/Documents/Projects"
   if [ ! -d "${WSLPROJ}" ]; then
       >&2 echo "ERROR: Path ${WSLPROJ} does not exist"
