@@ -1,5 +1,20 @@
 # Changelog
 
+## [v1.0.14](https://github.com/fboulnois/universal-debian/compare/v1.0.13...v1.0.14) - 2022-11-28
+
+### Added
+
+* Install git-lfs to track large files
+* Switch from nvm to volta
+
+### Changed
+
+* Simplify wsl home detection
+
+### Fixed
+
+* Return only a single wsl home
+
 ## [v1.0.13](https://github.com/fboulnois/universal-debian/compare/v1.0.12...v1.0.13) - 2022-10-31
 
 ### Added
