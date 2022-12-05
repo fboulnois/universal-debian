@@ -105,7 +105,7 @@ setup_utils() {
 }
 
 setup_openssh() {
-  echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/authorized_keys
+  echo "${SSH_AUTH_KEY}" | sudo tee /etc/ssh/authorized_keys
   sudo sed -i -r \
     -e 's/^#?LogLevel.*/LogLevel VERBOSE/' \
     -e 's/^#?PermitRootLogin.*/PermitRootLogin no/' \
@@ -193,7 +193,7 @@ do_upgrade
 # wsl config
 #setup_wsl
 
-# server config -- ensure SSHD_CONFIG is exported
+# server config -- ensure SSH_AUTH_KEY is exported
 #setup_server
 
 # nuc config
