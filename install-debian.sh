@@ -49,7 +49,7 @@ setup_volta() {
 
 setup_pnpm() {
   volta install pnpm@latest
-  printf '\n\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
+  printf '\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
 }
