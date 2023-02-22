@@ -19,9 +19,9 @@ install_dev() {
 }
 
 setup_git() {
+  git config --global credential.helper store
   git config --global init.defaultBranch main
   git config --global pull.rebase true
-  git config --global credential.helper store
   git config --global rebase.autoStash true
 }
 
