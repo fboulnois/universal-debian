@@ -1,5 +1,21 @@
 # Changelog
 
+## [v1.0.15](https://github.com/fboulnois/universal-debian/compare/v1.0.14...v1.0.15) - 2023-02-22
+
+### Added
+
+* Update volta to v1.1.1
+* Update rustup to v1.25.2
+
+### Changed
+
+* Reorder git settings alphabetically
+
+### Fixed
+
+* Remove extra newline for alias
+* Switch ssh key name for clarity
+
 ## [v1.0.14](https://github.com/fboulnois/universal-debian/compare/v1.0.13...v1.0.14) - 2022-11-28
 
 ### Added
