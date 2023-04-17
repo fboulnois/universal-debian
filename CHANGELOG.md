@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.16](https://github.com/fboulnois/universal-debian/compare/v1.0.15...v1.0.16) - 2023-04-17
+
+### Fixed
+
+* Simplify node and pnpm installation
+
 ## [v1.0.15](https://github.com/fboulnois/universal-debian/compare/v1.0.14...v1.0.15) - 2023-02-22
 
 ### Added
