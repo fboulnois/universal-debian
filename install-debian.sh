@@ -42,16 +42,13 @@ setup_volta() {
   curl -O https://raw.githubusercontent.com/volta-cli/volta/v1.1.1/dev/unix/volta-install.sh
   echo "${VOLTA_SHA256}  volta-install.sh" | sha256sum -c -
   chmod +x volta-install.sh && ./volta-install.sh && rm volta-install.sh
-  # shellcheck source=/dev/null
-  source "$HOME/.bashrc"
-  volta install node@lts
 }
 
-setup_pnpm() {
-  volta install pnpm@latest
+setup_node() {
   printf '\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
   # shellcheck source=/dev/null
   source "$HOME/.bashrc"
+  volta install node@lts pnpm
 }
 
 setup_dev() {
@@ -59,7 +56,7 @@ setup_dev() {
   setup_git
   setup_rust
   setup_volta
-  setup_pnpm
+  setup_node
 }
 
 ##
