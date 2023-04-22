@@ -46,8 +46,7 @@ setup_volta() {
 
 setup_node() {
   printf '\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
-  # shellcheck source=/dev/null
-  source "$HOME/.bashrc"
+  export PATH="$HOME/.volta/bin:$PATH"
   volta install node@lts pnpm
 }
 
