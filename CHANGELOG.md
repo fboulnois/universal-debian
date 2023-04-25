@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.0.17](https://github.com/fboulnois/universal-debian/compare/v1.0.16...v1.0.17) - 2023-04-24
+
+### Added
+
+* Add Dockerfile
+
+### Fixed
+
+* Ensure volta is on path during install
+
 ## [v1.0.16](https://github.com/fboulnois/universal-debian/compare/v1.0.15...v1.0.16) - 2023-04-17
 
 ### Fixed
