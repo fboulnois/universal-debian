@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.18](https://github.com/fboulnois/universal-debian/compare/v1.0.17...v1.0.18) - 2023-05-22
+
+### Added
+
+* Update rustup to 1.26.0
+
 ## [v1.0.17](https://github.com/fboulnois/universal-debian/compare/v1.0.16...v1.0.17) - 2023-04-24
 
 ### Added
