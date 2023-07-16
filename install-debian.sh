@@ -34,6 +34,7 @@ setup_rust() {
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
   cargo install cargo-deny
+  printf '[alias]\nwhy = "tree -i -p"\n' >> "$HOME/.cargo/config.toml"
 }
 
 setup_volta() {
