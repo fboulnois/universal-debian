@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.19](https://github.com/fboulnois/universal-debian/compare/v1.0.18...v1.0.19) - 2023-07-16
+
+### Added
+
+* Add cargo alias to show reverse dependencies
+
 ## [v1.0.18](https://github.com/fboulnois/universal-debian/compare/v1.0.17...v1.0.18) - 2023-05-22
 
 ### Added
