@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.20](https://github.com/fboulnois/universal-debian/compare/v1.0.19...v1.0.20) - 2023-09-04
+
+### Added
+
+* Add git alias to purge old data
+
 ## [v1.0.19](https://github.com/fboulnois/universal-debian/compare/v1.0.18...v1.0.19) - 2023-07-16
 
 ### Added
