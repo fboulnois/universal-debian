@@ -1,4 +1,4 @@
-FROM debian:11-slim
+FROM debian:12-slim
 
 RUN apt update && apt install -y sudo curl nano shellcheck
 
