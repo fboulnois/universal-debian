@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.0.21](https://github.com/fboulnois/universal-debian/compare/v1.0.20...v1.0.21) - 2023-09-15
+
+### Added
+
+* Upgrade Dockerfile to Debian 12
+* Upgrade Debian to 12 if on 11
+
 ## [v1.0.20](https://github.com/fboulnois/universal-debian/compare/v1.0.19...v1.0.20) - 2023-09-04
 
 ### Added
