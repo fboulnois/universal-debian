@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.22](https://github.com/fboulnois/universal-debian/compare/v1.0.21...v1.0.22) - 2023-09-20
+
+### Added
+
+* Automatically setup remote when pushing
+
 ## [v1.0.21](https://github.com/fboulnois/universal-debian/compare/v1.0.20...v1.0.21) - 2023-09-15
 
 ### Added
