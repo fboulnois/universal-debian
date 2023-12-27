@@ -60,12 +60,17 @@ setup_node() {
   volta install node@lts pnpm
 }
 
+ignore_docker_cli_hints() {
+  printf 'export DOCKER_CLI_HINTS=false\n' >> "$HOME/.profile"
+}
+
 setup_dev() {
   install_dev
   setup_git
   setup_rust
   setup_volta
   setup_node
+  ignore_docker_cli_hints
 }
 
 ##
