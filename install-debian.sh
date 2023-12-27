@@ -55,7 +55,7 @@ setup_volta() {
 }
 
 setup_node() {
-  printf '\nalias yarn="pnpm"\n' >> "$HOME/.bashrc"
+  printf 'alias yarn="pnpm"\n' >> "$HOME/.profile"
   export PATH="$HOME/.volta/bin:$PATH"
   volta install node@lts pnpm
 }
@@ -150,7 +150,7 @@ setup_docker() {
   echo '{ "features": { "buildkit": true } }' | sudo tee /etc/docker/daemon.json
   sudo systemctl restart docker
   # make docker less painful to use without disabling sudo
-  echo 'alias docker="sudo /usr/bin/docker"' >> "$HOME/.bashrc"
+  echo 'alias docker="sudo /usr/bin/docker"' >> "$HOME/.profile"
 }
 
 setup_server() {
