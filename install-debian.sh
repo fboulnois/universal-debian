@@ -7,14 +7,7 @@
 set -eu
 
 do_upgrade() {
-  DEBIAN_VERSION=$(cat /etc/debian_version)
   sudo apt-get update && sudo apt-get -y upgrade
-  if awk "BEGIN {exit ($DEBIAN_VERSION >= 12.0)}"; then
-    sudo sed -i 's/bullseye/bookworm/' /etc/apt/sources.list
-    sudo apt update && sudo apt upgrade --without-new-pkgs -y
-    sudo apt full-upgrade -y
-    sudo apt --purge autoremove -y
-  fi
 }
 
 ##
