@@ -142,7 +142,7 @@ install_docker() {
 
 setup_docker() {
   # disable unprivileged user namespaces
-  sudo sysctl -w kernel.unprivileged_userns_clone=0
+  sudo sysctl -w user.max_user_namespaces=0
   # install docker and enable buildkit
   install_docker
   echo '{ "features": { "buildkit": true } }' | sudo tee /etc/docker/daemon.json
