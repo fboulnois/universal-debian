@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.0.24](https://github.com/fboulnois/universal-debian/compare/v1.0.23...v1.0.24) - 2024-03-29
+
+### Added
+
+* Update rustup to 1.27.0
+* Remove automatic upgrade to Debian 12
+
+### Fixed
+
+* Kernel.unprivileged_userns_clone is deprecated
+
 ## [v1.0.23](https://github.com/fboulnois/universal-debian/compare/v1.0.22...v1.0.23) - 2023-12-26
 
 ### Added
