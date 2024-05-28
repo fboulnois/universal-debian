@@ -1,6 +1,12 @@
 # Changelog
 
-## [v1.0.24](https://github.com/fboulnois/universal-debian/compare/v1.0.23...v1.0.24) - 2024-03-29
+## [v1.0.25](https://github.com/fboulnois/universal-debian/compare/v1.0.24...v1.0.25) - 2024-05-27
+
+### Added
+
+* Update rustup to 1.27.1
+
+## [v1.0.24](https://github.com/fboulnois/universal-debian/compare/v1.0.23...v1.0.24) - 2024-03-30
 
 ### Added
 
