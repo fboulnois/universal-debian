@@ -158,37 +158,6 @@ setup_server() {
   setup_docker
 }
 
-##
-# Intel NUC specific configuration
-##
-
-setup_iwd() {
-  sudo sed -i 's/main$/main contrib non-free/' /etc/apt/sources.list
-  sudo apt-get update && sudo apt-get install -y firmware-iwlwifi iwd
-}
-
-config_iwd() {
-  # configure iwd to use default dhcp and ivp6
-  IWD_CONFIG=$(cat << EOF
-[General]
-EnableNetworkConfiguration=true
-
-[Network]
-EnableIPv6=true
-EOF
-)
-  echo "${IWD_CONFIG}" | sudo tee /etc/iwd/main.conf
-  # connect to wireless network
-  read -r -s -p "Wireless SSID: " IWD_SSID
-  read -r -s -p "Wireless passphrase: " IWD_PASS
-  iwctl --passphrase "${IWD_PASS}" static wlan0 connect "${IWD_SSID}"
-}
-
-setup_nuc() {
-  setup_iwd
-  config_iwd
-}
-
 do_upgrade
 
 # dev config
@@ -199,6 +168,3 @@ do_upgrade
 
 # server config -- ensure SSH_AUTH_KEY is exported
 #setup_server
-
-# nuc config
-#setup_nuc
