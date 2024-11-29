@@ -104,13 +104,12 @@ setup_wsl() {
 ##
 
 setup_openssh() {
-  echo "${SSH_AUTH_KEY}" | sudo tee /etc/ssh/authorized_keys
+  sudo apt-get install -y openssh-server
   sudo sed -i -r \
     -e 's/^#?LogLevel.*/LogLevel VERBOSE/' \
     -e 's/^#?PermitRootLogin.*/PermitRootLogin no/' \
     -e 's/^#?AuthorizedKeysFile.*/AuthorizedKeysFile \/etc\/ssh\/authorized_keys/' \
     -e 's/^#?PasswordAuthentication.*/PasswordAuthentication no/' \
-    -e 's/^#?ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' \
     -e 's/^#?X11Forwarding.*/X11Forwarding no/' \
       /etc/ssh/sshd_config
   sudo systemctl restart sshd
@@ -160,5 +159,4 @@ do_upgrade
 # wsl config
 #setup_wsl
 
-# server config -- ensure SSH_AUTH_KEY is exported
 #setup_server
