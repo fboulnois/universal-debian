@@ -42,8 +42,8 @@ setup_rust() {
 
 setup_volta() {
   cd "$HOME"
-  VOLTA_SHA256="743fa415bb238da4406e1350e69f85e1e6e2353489d8b825d7b5f8ee1b21311f"
-  curl -O https://raw.githubusercontent.com/volta-cli/volta/v1.1.1/dev/unix/volta-install.sh
+  VOLTA_SHA256="fbdc4b8cb33fb6d19e5f07b22423265943d34e7e5c3d5a1efcecc9621854f9cb"
+  curl -O https://raw.githubusercontent.com/volta-cli/volta/v2.0.1/dev/unix/volta-install.sh
   echo "${VOLTA_SHA256}  volta-install.sh" | sha256sum -c -
   chmod +x volta-install.sh && ./volta-install.sh && rm volta-install.sh
 }
