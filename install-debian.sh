@@ -35,7 +35,7 @@ setup_rust() {
   chmod +x rustup-init.sh && ./rustup-init.sh -y && rm rustup-init.sh
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
-  cargo install cargo-deny
+  cargo install cargo-deny --locked
   printf '[alias]\nwhy = "tree -i -p"\n' >> "$HOME/.cargo/config.toml"
 }
 
