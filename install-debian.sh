@@ -103,12 +103,6 @@ setup_wsl() {
 # Server specific configuration
 ##
 
-setup_utils() {
-  sudo apt-get install -y \
-    htop openssh-server unattended-upgrades ufw \
-    apparmor apparmor-profiles apparmor-utils
-}
-
 setup_openssh() {
   echo "${SSH_AUTH_KEY}" | sudo tee /etc/ssh/authorized_keys
   sudo sed -i -r \
@@ -153,7 +147,6 @@ setup_docker() {
 }
 
 setup_server() {
-  setup_utils
   setup_openssh
   setup_ufw
   setup_docker
