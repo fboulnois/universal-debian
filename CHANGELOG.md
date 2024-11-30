@@ -1,5 +1,22 @@
 # Changelog
 
+## [v1.0.26](https://github.com/fboulnois/universal-debian/compare/v1.0.25...v1.0.26) - 2024-11-30
+
+### Added
+
+* Add debian preseed install
+* Update volta to 2.0.1
+* Add --target all to cargo why command
+* Cargo install cargo-llvm-cov
+
+### Changed
+
+* Update openssh install for bookworm
+* Remove setup of server utils
+* Update docker install to use bookworm
+* Lock down cargo-deny install
+* Remove unused intel wifi
+
 ## [v1.0.25](https://github.com/fboulnois/universal-debian/compare/v1.0.24...v1.0.25) - 2024-05-27
 
 ### Added
