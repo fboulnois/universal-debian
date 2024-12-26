@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.0.27](https://github.com/fboulnois/universal-debian/compare/v1.0.26...v1.0.27) - 2024-12-25
+
+### Added
+
+* Add argument parser to execute functions
+* Update volta to 2.0.2
+
+### Changed
+
+* Remove extraneous sed patterns
+
 ## [v1.0.26](https://github.com/fboulnois/universal-debian/compare/v1.0.25...v1.0.26) - 2024-11-30
 
 ### Added
