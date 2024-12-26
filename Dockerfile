@@ -17,10 +17,6 @@ ARG PATH="$PATH:$HOME/AppData"
 COPY install-debian.sh .
 
 RUN mkdir -p "$HOME/Documents/Projects" \
-  && sed -i \
-    -e 's/^#setup_dev/setup_dev/' \
-    -e 's/^#setup_wsl/setup_wsl/' \
-    -e 's/wsl\.exe/echo/' \
-    install-debian.sh \
+  && sed -i 's/wsl\.exe/echo/' install-debian.sh \
   && shellcheck install-debian.sh \
   && ./install-debian.sh
