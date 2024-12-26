@@ -153,10 +153,22 @@ setup_server() {
 
 do_upgrade
 
-# dev config
-#setup_dev
-
-# wsl config
-#setup_wsl
-
-#setup_server
+for ARG in "$@"; do
+  case $ARG in
+    --dev)
+      setup_dev
+      shift
+      ;;
+    --wsl)
+      setup_wsl
+      shift
+      ;;
+    --server)
+      setup_server
+      shift
+      ;;
+    *)
+      echo "Invalid option: $ARG" 1>&2
+      ;;
+  esac
+done
