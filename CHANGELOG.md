@@ -1,5 +1,20 @@
 # Changelog
 
+## [v1.0.28](https://github.com/fboulnois/universal-debian/compare/v1.0.27...v1.0.28) - 2025-02-17
+
+### Added
+
+* Add nvidia container toolkit
+* Install docker in separate step
+
+### Changed
+
+* Rename section headers
+
+### Fixed
+
+* Buildkit is docker default
+
 ## [v1.0.27](https://github.com/fboulnois/universal-debian/compare/v1.0.26...v1.0.27) - 2024-12-25
 
 ### Added
