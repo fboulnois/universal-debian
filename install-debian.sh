@@ -85,6 +85,21 @@ install_docker() {
   sudo apt-get update && sudo apt-get install -y docker-ce
 }
 
+setup_nvctk() {
+  cd "$HOME"
+  NVCTK_SHA256="425822bb25bfa7f5ce96e598a7bbd27db128649e4113017b3ff765b98b43b166"
+  NVCTK_GPGFILE="nvidia-container-toolkit-keyring.gpg"
+  NVCTK_KEYRING="/usr/share/keyrings/${NVCTK_GPGFILE}"
+  curl -s https://nvidia.github.io/libnvidia-container/gpgkey | gpg --batch --yes --dearmor -o "${NVCTK_GPGFILE}"
+  echo "${NVCTK_SHA256}  ${NVCTK_GPGFILE}" | sha256sum -c -
+  NVCTK_SIG=$(gpg --dry-run --show-keys "${NVCTK_GPGFILE}" | awk 'NR==2 { print $1 }')
+  [ "${NVCTK_SIG}" = "C95B321B61E88C1809C4F759DDCAE044F796ECB0" ]
+  chmod 644 "${NVCTK_GPGFILE}" && sudo mv "${NVCTK_GPGFILE}" "${NVCTK_KEYRING}"
+  echo "deb [signed-by=${NVCTK_KEYRING}] https://nvidia.github.io/libnvidia-container/stable/deb/amd64 /" | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+  sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+  sudo nvidia-ctk runtime configure --runtime=docker
+}
+
 setup_docker() {
   # disable unprivileged user namespaces
   sudo sysctl -w user.max_user_namespaces=0
@@ -163,6 +178,10 @@ for ARG in "$@"; do
       ;;
     --docker)
       setup_docker
+      shift
+      ;;
+    --nvctk)
+      setup_nvctk
       shift
       ;;
     --wsl)
