@@ -11,7 +11,7 @@ do_upgrade() {
 }
 
 ##
-# Development specific configuration
+# Development configuration
 ##
 
 install_dev() {
@@ -68,7 +68,7 @@ setup_dev() {
 }
 
 ##
-# WSL specific configuration
+# WSL configuration
 ##
 
 setup_ln() {
@@ -100,7 +100,7 @@ setup_wsl() {
 }
 
 ##
-# Server specific configuration
+# Server configuration
 ##
 
 setup_openssh() {
