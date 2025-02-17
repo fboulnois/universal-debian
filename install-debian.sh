@@ -90,7 +90,6 @@ setup_docker() {
   sudo sysctl -w user.max_user_namespaces=0
   # install docker and enable buildkit
   install_docker
-  echo '{ "features": { "buildkit": true } }' | sudo tee /etc/docker/daemon.json
   sudo systemctl restart docker
   # make docker less painful to use without disabling sudo
   echo 'alias docker="sudo /usr/bin/docker"' >> "$HOME/.profile"
