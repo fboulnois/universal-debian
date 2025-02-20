@@ -131,6 +131,9 @@ config_wsl() {
 enabled = true
 options = "metadata"
 mountFsTab = false
+
+[boot]
+command="service docker start"
 EOF
 )
   echo "${WSL_CONFIG}" | sudo tee /etc/wsl.conf
