@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.29](https://github.com/fboulnois/universal-debian/compare/v1.0.28...v1.0.29) - 2025-02-23
+
+### Added
+
+* Automatically start docker service
+
 ## [v1.0.28](https://github.com/fboulnois/universal-debian/compare/v1.0.27...v1.0.28) - 2025-02-17
 
 ### Added
