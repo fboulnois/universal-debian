@@ -49,7 +49,6 @@ setup_volta() {
 }
 
 setup_node() {
-  printf 'alias yarn="pnpm"\n' >> "$HOME/.profile"
   export PATH="$HOME/.volta/bin:$PATH"
   volta install node@lts pnpm
 }
