@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.0.30](https://github.com/fboulnois/universal-debian/compare/v1.0.29...v1.0.30) - 2025-07-02
+
+### Added
+
+* Update rustup to 1.28.2
+
+### Changed
+
+* Remove yarn alias
+
 ## [v1.0.29](https://github.com/fboulnois/universal-debian/compare/v1.0.28...v1.0.29) - 2025-02-23
 
 ### Added
