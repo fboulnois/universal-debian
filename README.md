@@ -1,3 +1,3 @@
 # Universal Debian
 
-A single script to configure Debian 12 across my devices.
+A single script to configure Debian 13 across my devices.
