@@ -150,13 +150,16 @@ setup_wsl() {
 
 setup_openssh() {
   sudo apt-get install -y openssh-server
-  sudo sed -i -r \
-    -e 's/^#?LogLevel.*/LogLevel VERBOSE/' \
-    -e 's/^#?PermitRootLogin.*/PermitRootLogin no/' \
-    -e 's/^#?AuthorizedKeysFile.*/AuthorizedKeysFile \/etc\/ssh\/authorized_keys/' \
-    -e 's/^#?PasswordAuthentication.*/PasswordAuthentication no/' \
-    -e 's/^#?X11Forwarding.*/X11Forwarding no/' \
-      /etc/ssh/sshd_config
+  SSHD_CONFIG=$(cat << EOF
+LogLevel VERBOSE
+PermitRootLogin no
+AuthorizedKeysFile /etc/ssh/authorized_keys
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+X11Forwarding no
+EOF
+)
+  echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/overrides.conf
   sudo systemctl restart sshd
 }
 
