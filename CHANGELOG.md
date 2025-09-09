@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.0.31](https://github.com/fboulnois/universal-debian/compare/v1.0.30...v1.0.31) - 2025-09-08
+
+### Added
+
+* Upgrade to debian 13
+
+### Changed
+
+* Simplify Dockerfile setup
+* Use override config for ssh
+
 ## [v1.0.30](https://github.com/fboulnois/universal-debian/compare/v1.0.29...v1.0.30) - 2025-07-02
 
 ### Added
