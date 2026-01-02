@@ -53,22 +53,29 @@ setup_node() {
   volta install node@lts pnpm
 }
 
-ignore_docker_cli_hints() {
-  printf 'export DOCKER_CLI_HINTS=false\n' >> "$HOME/.profile"
-}
-
 setup_dev() {
   install_dev
   setup_git
   setup_rust
   setup_volta
   setup_node
-  ignore_docker_cli_hints
 }
 
 ##
 # Docker configuration
 ##
+
+ignore_docker_cli_hints() {
+  printf 'export DOCKER_CLI_HINTS=false\n' >> "$HOME/.profile"
+}
+
+check_gpg_installed() {
+  if ! command -v gpg &> /dev/null; then
+    sudo apt-get update && sudo apt-get install -y gnupg
+    mkdir -p "$HOME/.gnupg"
+    chmod 700 "$HOME/.gnupg"
+  fi
+}
 
 install_docker() {
   cd "$HOME"
@@ -100,12 +107,14 @@ setup_nvctk() {
 }
 
 setup_docker() {
+  ignore_docker_cli_hints
+  check_gpg_installed
   # disable unprivileged user namespaces
   sudo sysctl -w user.max_user_namespaces=0
   install_docker
   sudo systemctl restart docker
-  # make docker less painful to use without disabling sudo
-  echo 'alias docker="sudo /usr/bin/docker"' >> "$HOME/.profile"
+  # make docker less painful to use
+  sudo usermod -aG docker $USER
 }
 
 ##
