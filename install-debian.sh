@@ -143,7 +143,6 @@ command = "service docker start"
 EOF
 )
   echo "${WSL_CONFIG}" | sudo tee /etc/wsl.conf
-  wsl.exe --set-default "${WSL_DISTRO_NAME}"
 }
 
 setup_wsl() {
