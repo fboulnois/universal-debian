@@ -24,7 +24,6 @@ setup_git() {
   git config --global pull.rebase true
   git config --global push.autoSetupRemote true
   git config --global rebase.autoStash true
-  git config --global alias.purge \!"git reflog expire --expire=now --all && git gc --prune=now --aggressive"
 }
 
 setup_rust() {
