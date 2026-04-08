@@ -36,6 +36,7 @@ setup_rust() {
   source "$HOME/.cargo/env"
   cargo install cargo-deny --locked
   cargo install cargo-llvm-cov --locked
+  cargo install cargo-msrv --locked
   printf '[alias]\nwhy = "tree --target all --invert --package"\n' >> "$HOME/.cargo/config.toml"
 }
 
