@@ -114,7 +114,7 @@ setup_docker() {
   install_docker
   sudo systemctl restart docker
   # make docker less painful to use
-  sudo usermod -aG docker $USER
+  sudo usermod -aG docker "$USER"
 }
 
 ##
