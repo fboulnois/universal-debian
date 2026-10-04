@@ -124,11 +124,13 @@ setup_docker() {
 setup_ln() {
   WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /AppData/{ sub(/\/AppData.*/,"",$0) } END { print }')
   WSLPROJ="${WSLHOME}/Documents/Projects"
-  if [ ! -d "${WSLPROJ}" ]; then
-      >&2 echo "ERROR: Path ${WSLPROJ} does not exist"
-      exit 1
+  if [ -d "${WSLPROJ}" ]; then
+    ln -s "${WSLPROJ}" "${HOME}/projects"
   fi
-  ln -s "${WSLPROJ}" "${HOME}/projects"
+  WSLSSH="${WSLHOME}/.ssh"
+  if [ -d "${WSLSSH}" ]; then
+    ln -s "${WSLSSH}" "${HOME}/.ssh"
+  fi
 }
 
 config_wsl() {
