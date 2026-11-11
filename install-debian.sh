@@ -118,7 +118,10 @@ setup_docker() {
   disable_unprivileged_userns
   install_docker
   sudo systemctl restart docker
-  # make docker less painful to use
+}
+
+setup_docker_nosudo() {
+  setup_docker
   sudo usermod -aG docker "$USER"
 }
 
@@ -202,6 +205,10 @@ for ARG in "$@"; do
       ;;
     --docker)
       setup_docker
+      shift
+      ;;
+    --docker-nosudo)
+      setup_docker_nosudo
       shift
       ;;
     --nvctk)
