@@ -134,7 +134,7 @@ setup_nvctk() {
 ##
 
 setup_ln() {
-  WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /AppData/{ sub(/\/AppData.*/,"",$0) } END { print }')
+  WSLHOME=$(wslpath "$(cmd.exe /c 'echo %USERPROFILE%' | tr -d '\r')")
   WSLPROJ="${WSLHOME}/Documents/Projects"
   if [ -d "${WSLPROJ}" ] && [ ! -e "${HOME}/projects" ] && [ ! -L "${HOME}/projects" ]; then
     ln -s "${WSLPROJ}" "${HOME}/projects"
