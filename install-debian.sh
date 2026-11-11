@@ -45,7 +45,7 @@ setup_rust() {
   RUST_SHA256="d890e2fef6fa991b19cde2e608199bc1dca4e37f41f884edf8849ff693048de6"
   curl -O https://raw.githubusercontent.com/rust-lang/rustup/1.29.3/rustup-init.sh
   echo "${RUST_SHA256}  rustup-init.sh" | sha256sum -c -
-  chmod +x rustup-init.sh && ./rustup-init.sh -y && rm rustup-init.sh
+  sh rustup-init.sh -y && rm rustup-init.sh
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
   cargo install --locked cargo-deny cargo-llvm-cov cargo-msrv
@@ -59,7 +59,7 @@ setup_volta() {
   VOLTA_SHA256="fbdc4b8cb33fb6d19e5f07b22423265943d34e7e5c3d5a1efcecc9621854f9cb"
   curl -O https://raw.githubusercontent.com/volta-cli/volta/v2.0.2/dev/unix/volta-install.sh
   echo "${VOLTA_SHA256}  volta-install.sh" | sha256sum -c -
-  chmod +x volta-install.sh && ./volta-install.sh && rm volta-install.sh
+  bash volta-install.sh && rm volta-install.sh
 }
 
 setup_node() {
