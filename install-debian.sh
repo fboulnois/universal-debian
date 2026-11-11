@@ -80,6 +80,13 @@ check_gpg_installed() {
   fi
 }
 
+disable_unprivileged_userns() {
+  if [ -e /proc/sys/kernel/unprivileged_userns_clone ]; then
+    echo 'kernel.unprivileged_userns_clone = 0' | sudo tee /etc/sysctl.d/99-userns.conf
+    sudo sysctl --system
+  fi
+}
+
 install_docker() {
   cd "$HOME"
   DOCKER_SHA256="a09e26b72228e330d55bf134b8eaca57365ef44bf70b8e27c5f55ea87a8b05e2"
@@ -108,8 +115,7 @@ setup_nvctk() {
 setup_docker() {
   ignore_docker_cli_hints
   check_gpg_installed
-  # disable unprivileged user namespaces
-  sudo sysctl -w user.max_user_namespaces=0
+  disable_unprivileged_userns
   install_docker
   sudo systemctl restart docker
   # make docker less painful to use
@@ -177,6 +183,7 @@ setup_ufw() {
 }
 
 setup_server() {
+  disable_unprivileged_userns
   setup_openssh
   setup_ufw
 }
