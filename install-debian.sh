@@ -134,11 +134,11 @@ setup_nvctk() {
 setup_ln() {
   WSLHOME=$(echo "${PATH}" | awk 'BEGIN{ RS=":" } /AppData/{ sub(/\/AppData.*/,"",$0) } END { print }')
   WSLPROJ="${WSLHOME}/Documents/Projects"
-  if [ -d "${WSLPROJ}" ]; then
+  if [ -d "${WSLPROJ}" ] && [ ! -e "${HOME}/projects" ] && [ ! -L "${HOME}/projects" ]; then
     ln -s "${WSLPROJ}" "${HOME}/projects"
   fi
   WSLSSH="${WSLHOME}/.ssh"
-  if [ -d "${WSLSSH}" ]; then
+  if [ -d "${WSLSSH}" ] && [ ! -e "${HOME}/.ssh" ] && [ ! -L "${HOME}/.ssh" ]; then
     ln -s "${WSLSSH}" "${HOME}/.ssh"
   fi
 }
