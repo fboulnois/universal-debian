@@ -80,7 +80,7 @@ setup_dev() {
 ##
 
 install_docker_prereqs() {
-  sudo apt-get install -y curl
+  sudo apt-get install -y --no-install-recommends curl
 }
 
 disable_unprivileged_userns() {
