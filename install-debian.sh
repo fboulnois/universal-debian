@@ -68,10 +68,6 @@ setup_dev() {
 # Docker configuration
 ##
 
-ignore_docker_cli_hints() {
-  printf 'export DOCKER_CLI_HINTS=false\n' >> "$HOME/.profile"
-}
-
 check_gpg_installed() {
   if ! command -v gpg &> /dev/null; then
     sudo apt-get update && sudo apt-get install -y gnupg
@@ -113,7 +109,6 @@ setup_nvctk() {
 }
 
 setup_docker() {
-  ignore_docker_cli_hints
   check_gpg_installed
   disable_unprivileged_userns
   install_docker
