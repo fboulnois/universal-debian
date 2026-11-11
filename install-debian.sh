@@ -7,6 +7,11 @@
 set -eu
 
 do_upgrade() {
+  for SOURCES in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+    if [ -f "${SOURCES}" ]; then
+      sudo sed -i -E 's#http://(deb|security)\.debian\.org/#https://\1.debian.org/#g' "${SOURCES}"
+    fi
+  done
   sudo apt-get update && sudo apt-get -y upgrade
 }
 
