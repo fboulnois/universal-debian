@@ -68,12 +68,10 @@ setup_dev() {
 # Docker configuration
 ##
 
-check_gpg_installed() {
-  if ! command -v gpg &> /dev/null; then
-    sudo apt-get update && sudo apt-get install -y gnupg
-    mkdir -p "$HOME/.gnupg"
-    chmod 700 "$HOME/.gnupg"
-  fi
+install_docker_prereqs() {
+  sudo apt-get install -y curl gnupg
+  mkdir -p "$HOME/.gnupg"
+  chmod 700 "$HOME/.gnupg"
 }
 
 disable_unprivileged_userns() {
@@ -109,7 +107,7 @@ setup_nvctk() {
 }
 
 setup_docker() {
-  check_gpg_installed
+  install_docker_prereqs
   disable_unprivileged_userns
   install_docker
   sudo systemctl restart docker
