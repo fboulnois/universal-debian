@@ -173,7 +173,7 @@ KbdInteractiveAuthentication no
 X11Forwarding no
 EOF
 )
-  echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/overrides.conf
+  echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/00-hardening.conf
   sudo systemctl restart sshd
 }
 
