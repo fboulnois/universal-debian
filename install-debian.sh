@@ -172,8 +172,8 @@ EOF
 }
 
 setup_ufw() {
-  sudo ufw enable
   sudo ufw allow ssh
+  sudo ufw --force enable
 }
 
 setup_server() {
