@@ -40,7 +40,9 @@ setup_rust() {
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
   cargo install --locked cargo-deny cargo-llvm-cov cargo-msrv
-  printf '[alias]\nwhy = "tree --target all --invert --package"\n' >> "$HOME/.cargo/config.toml"
+  if ! grep -qxF '[alias]' "$HOME/.cargo/config.toml" 2>/dev/null; then
+    printf '[alias]\nwhy = "tree --target all --invert --package"\n' >> "$HOME/.cargo/config.toml"
+  fi
 }
 
 setup_volta() {
