@@ -146,6 +146,7 @@ setup_ln() {
 }
 
 config_wsl() {
+  # required for vscode development in wsl
   sudo apt-get install -y wget
   WSL_CONFIG=$(cat << EOF
 [automount]
