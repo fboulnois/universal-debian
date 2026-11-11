@@ -93,7 +93,19 @@ install_docker() {
   sudo apt-get update && sudo apt-get install -y docker-ce
 }
 
-setup_nvctk() {
+setup_docker() {
+  install_docker_prereqs
+  disable_unprivileged_userns
+  install_docker
+  sudo systemctl restart docker
+}
+
+setup_docker_nosudo() {
+  setup_docker
+  sudo usermod -aG docker "$USER"
+}
+
+install_nvctk() {
   cd "$HOME"
   NVCTK_SHA256="425822bb25bfa7f5ce96e598a7bbd27db128649e4113017b3ff765b98b43b166"
   NVCTK_GPGFILE="nvidia-container-toolkit-keyring.gpg"
@@ -106,16 +118,13 @@ setup_nvctk() {
   sudo nvidia-ctk runtime configure --runtime=docker
 }
 
-setup_docker() {
-  install_docker_prereqs
-  disable_unprivileged_userns
-  install_docker
+setup_nvctk() {
+  if ! command -v dockerd &> /dev/null; then
+    echo "--nvctk requires --docker or --docker-nosudo before it" 1>&2
+    exit 1
+  fi
+  install_nvctk
   sudo systemctl restart docker
-}
-
-setup_docker_nosudo() {
-  setup_docker
-  sudo usermod -aG docker "$USER"
 }
 
 ##
