@@ -99,7 +99,7 @@ setup_docker() {
   install_docker_prereqs
   disable_unprivileged_userns
   install_docker
-  sudo systemctl restart docker
+  sudo service docker restart
 }
 
 setup_docker_nosudo() {
@@ -126,7 +126,7 @@ setup_nvctk() {
     exit 1
   fi
   install_nvctk
-  sudo systemctl restart docker
+  sudo service docker restart
 }
 
 ##
