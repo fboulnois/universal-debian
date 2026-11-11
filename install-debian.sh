@@ -155,7 +155,7 @@ setup_ln() {
 config_wsl() {
   # required for vscode development in wsl
   sudo apt-get install -y wget
-  WSL_CONFIG=$(cat << EOF
+  sudo tee /etc/wsl.conf << 'EOF'
 [automount]
 enabled = true
 options = "metadata"
@@ -164,8 +164,6 @@ mountFsTab = false
 [boot]
 command = "service docker start"
 EOF
-)
-  echo "${WSL_CONFIG}" | sudo tee /etc/wsl.conf
 }
 
 setup_wsl() {
@@ -183,7 +181,7 @@ setup_openssh() {
     echo "/etc/ssh/authorized_keys is missing, empty, or unreadable" 1>&2
     exit 1
   fi
-  SSHD_CONFIG=$(cat << EOF
+  sudo tee /etc/ssh/sshd_config.d/00-hardening.conf << 'EOF'
 LogLevel VERBOSE
 PermitRootLogin no
 AuthorizedKeysFile /etc/ssh/authorized_keys
@@ -191,8 +189,6 @@ PasswordAuthentication no
 KbdInteractiveAuthentication no
 X11Forwarding no
 EOF
-)
-  echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/00-hardening.conf
   sudo sshd -t
   sudo service ssh restart
 }
