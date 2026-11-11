@@ -39,9 +39,7 @@ setup_rust() {
   chmod +x rustup-init.sh && ./rustup-init.sh -y && rm rustup-init.sh
   # shellcheck source=/dev/null
   source "$HOME/.cargo/env"
-  cargo install cargo-deny --locked
-  cargo install cargo-llvm-cov --locked
-  cargo install cargo-msrv --locked
+  cargo install --locked cargo-deny cargo-llvm-cov cargo-msrv
   printf '[alias]\nwhy = "tree --target all --invert --package"\n' >> "$HOME/.cargo/config.toml"
 }
 
