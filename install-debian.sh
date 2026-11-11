@@ -173,6 +173,10 @@ KbdInteractiveAuthentication no
 X11Forwarding no
 EOF
 )
+  if [ ! -s /etc/ssh/authorized_keys ] || [ ! -r /etc/ssh/authorized_keys ]; then
+    echo "/etc/ssh/authorized_keys is missing, empty, or unreadable" 1>&2
+    exit 1
+  fi
   echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/00-hardening.conf
   sudo systemctl restart sshd
 }
