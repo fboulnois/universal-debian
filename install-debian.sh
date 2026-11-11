@@ -46,9 +46,7 @@ setup_rust() {
   curl -O https://raw.githubusercontent.com/rust-lang/rustup/1.29.3/rustup-init.sh
   echo "${RUST_SHA256}  rustup-init.sh" | sha256sum -c -
   sh rustup-init.sh -y && rm rustup-init.sh
-  # shellcheck source=/dev/null
-  source "$HOME/.cargo/env"
-  cargo install --locked cargo-deny cargo-llvm-cov cargo-msrv
+  "$HOME/.cargo/bin/cargo" install --locked cargo-deny cargo-llvm-cov cargo-msrv
   if ! grep -qxF '[alias]' "$HOME/.cargo/config.toml" 2>/dev/null; then
     printf '[alias]\nwhy = "tree --target all --invert --package"\n' >> "$HOME/.cargo/config.toml"
   fi
