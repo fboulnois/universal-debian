@@ -16,19 +16,28 @@ do_upgrade() {
 }
 
 ##
-# Development configuration
+# Git configuration
 ##
 
-install_dev() {
-  sudo apt-get install -y build-essential git git-lfs gdb curl jq pkg-config libssl-dev
+install_git() {
+  sudo apt-get install -y --no-install-recommends curl git git-lfs openssh-client
 }
 
 setup_git() {
+  install_git
   git config --global credential.helper store
   git config --global init.defaultBranch main
   git config --global pull.rebase true
   git config --global push.autoSetupRemote true
   git config --global rebase.autoStash true
+}
+
+##
+# Development configuration
+##
+
+install_dev() {
+  sudo apt-get install -y build-essential gdb jq pkg-config libssl-dev
 }
 
 setup_rust() {
@@ -59,8 +68,8 @@ setup_node() {
 }
 
 setup_dev() {
-  install_dev
   setup_git
+  install_dev
   setup_rust
   setup_volta
   setup_node
@@ -206,6 +215,10 @@ do_upgrade
 
 for ARG in "$@"; do
   case $ARG in
+    --git)
+      setup_git
+      shift
+      ;;
     --dev)
       setup_dev
       shift
