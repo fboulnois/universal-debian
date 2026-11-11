@@ -180,6 +180,7 @@ EOF
 }
 
 setup_ufw() {
+  sudo apt-get install -y ufw
   sudo ufw allow ssh
   sudo ufw --force enable
 }
