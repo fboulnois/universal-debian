@@ -186,7 +186,7 @@ EOF
   fi
   echo "${SSHD_CONFIG}" | sudo tee /etc/ssh/sshd_config.d/00-hardening.conf
   sudo sshd -t
-  sudo systemctl restart sshd
+  sudo service ssh restart
 }
 
 setup_ufw() {
