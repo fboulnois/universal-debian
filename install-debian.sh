@@ -94,10 +94,10 @@ install_docker() {
   cd "$HOME"
   DOCKER_SHA256="1500c1f56fa9e26b9b8f42452a553675796ade0807cdce11975eb98170b3a570"
   DOCKER_GPGFILE="docker-keyring.asc"
-  DOCKER_KEYRING="/usr/share/keyrings/${DOCKER_GPGFILE}"
+  DOCKER_KEYRING="/etc/apt/keyrings/${DOCKER_GPGFILE}"
   curl -s https://download.docker.com/linux/debian/gpg -o "${DOCKER_GPGFILE}"
   echo "${DOCKER_SHA256}  ${DOCKER_GPGFILE}" | sha256sum -c -
-  chmod 644 "${DOCKER_GPGFILE}" && sudo mv "${DOCKER_GPGFILE}" "${DOCKER_KEYRING}"
+  sudo install -m 644 "${DOCKER_GPGFILE}" "${DOCKER_KEYRING}" && rm "${DOCKER_GPGFILE}"
   echo "deb [signed-by=${DOCKER_KEYRING}] https://download.docker.com/linux/debian trixie stable" | sudo tee /etc/apt/sources.list.d/docker.list
   sudo apt-get update && sudo apt-get install -y docker-ce
 }
@@ -118,10 +118,10 @@ install_nvctk() {
   cd "$HOME"
   NVCTK_SHA256="c880576d6cf75a48e5027a871bac70fd0421ab07d2b55f30877b21f1c87959c9"
   NVCTK_GPGFILE="nvidia-container-toolkit-keyring.asc"
-  NVCTK_KEYRING="/usr/share/keyrings/${NVCTK_GPGFILE}"
+  NVCTK_KEYRING="/etc/apt/keyrings/${NVCTK_GPGFILE}"
   curl -s https://nvidia.github.io/libnvidia-container/gpgkey -o "${NVCTK_GPGFILE}"
   echo "${NVCTK_SHA256}  ${NVCTK_GPGFILE}" | sha256sum -c -
-  chmod 644 "${NVCTK_GPGFILE}" && sudo mv "${NVCTK_GPGFILE}" "${NVCTK_KEYRING}"
+  sudo install -m 644 "${NVCTK_GPGFILE}" "${NVCTK_KEYRING}" && rm "${NVCTK_GPGFILE}"
   echo "deb [signed-by=${NVCTK_KEYRING}] https://nvidia.github.io/libnvidia-container/stable/deb/amd64 /" | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
   sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
   sudo nvidia-ctk runtime configure --runtime=docker
